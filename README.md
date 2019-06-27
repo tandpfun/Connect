@@ -48,7 +48,7 @@ This package lets me generate images to make profiles and command responses!
 ## To-Do List
 - [ ] Put generated images into embeds
 - [ ] Create Support Server
-- [ ] Make Crime Command
+- [x] Make Crime Command
 - [ ] Make Rob Command
 
 ## Thank You
