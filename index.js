@@ -54,7 +54,7 @@ var functions = {
 
 /* Command Cooldowns */
 let workcooldown = new Set();
-
+let crimecooldown = new Set();
 
 /* All The Bot's Commands */
 var commands = {
@@ -67,7 +67,7 @@ var commands = {
      let embed = new Discord.RichEmbed()
      embed.setAuthor("ConnectBot Commands", client.user.avatarURL)
      embed.addField("📇 **Profile Commands**","`+setup` - Setup your profile\n`+profile` - View your profile\n`+get (user)` - Get another user's profile\n`+edit` - Edit your profile")
-     embed.addField("💵 **Get Experience**", "`+work` - Gain from 1xp to 300xp every 10 minutes\n`+gamble (xp)` - 1/3 chance of doubling xp\n`Every Message` - Gain 10xp for every message every 30 seconds")
+     embed.addField("💵 **Get Experience**", "`+work` - Gain from 1xp to 300xp every 10 minutes\n`+gamble (xp)` - 1/2 chance of doubling xp\n`+crime` - 1/5 chance of getting up to 1200xp. Or loosing it.\n`Every Message` - Gain 10xp for every message every 30 seconds")
      embed.addField("🛒 **Buy Stuff**","`+shop` - Buy something from the shop.")
      embed.setColor("GREEN")
      embed.setFooter("Connect Soical Bot")
@@ -157,6 +157,54 @@ var commands = {
      })
    }
  },
+ crime: {
+   usage: "crime",
+   description: "Commit a crime",
+   category: "gain",
+   aliases:[],
+   run: (message) => {
+     if (!profiles.profiles.includes(message.author.id)) return message.channel.send("<:warning:579387552453099561> **Whoops!** Please create your profile first: `+setup`")
+     let crimes = ["rob a bank", "steal a bread loaf", "find money on the ground", "hack discord", "steal a carpet","steal your friend's chair","dab","hit the whip"]
+     if (!crimecooldown.has(message.author.id)) {
+       let crime = crimes[Math.floor(Math.random()*crimes.length)];
+       let money = Math.floor(Math.random()*1200)
+       let odds = Math.floor(Math.random()*5)
+       if (odds === 1) {
+         datafile.xp[message.author.id]=datafile.xp[message.author.id]+money
+         fs.writeFileSync("data.json", JSON.stringify(datafile));
+         const canvas = Canvas.createCanvas(700, 250);
+         const ctx = canvas.getContext('2d');
+         Canvas.loadImage('https://cdn2.iconfinder.com/data/icons/actions-states-vol-1-colored/48/JD-13-512.png').then((icon) => {
+             ctx.drawImage(icon, 20, 50, 150, 150);
+             ctx.font = '30px sans-serif';
+             ctx.fillStyle = '#FFD700';
+             ctx.fillText(`You ${crime}\nand earn ${money}xp! Good Job!`, 175, 100);
+             const attachment = new Discord.Attachment(canvas.toBuffer(), 'profile.png');
+             message.channel.send(attachment);
+         })
+       } else {
+         datafile.xp[message.author.id]=datafile.xp[message.author.id]-money
+         fs.writeFileSync("data.json", JSON.stringify(datafile));
+         const canvas = Canvas.createCanvas(700, 250);
+         const ctx = canvas.getContext('2d');
+         Canvas.loadImage('https://cdn2.iconfinder.com/data/icons/actions-states-vol-1-colored/48/JD-13-512.png').then((icon) => {
+             ctx.drawImage(icon, 20, 50, 150, 150);
+             ctx.font = '30px sans-serif';
+             ctx.fillStyle = '#f96854';
+             ctx.fillText(`You tried to\n${crime}\nand failed. You lost ${money}xp.`, 175, 100);
+             const attachment = new Discord.Attachment(canvas.toBuffer(), 'profile.png');
+             message.channel.send(attachment);
+         })
+       }
+       crimecooldown.add(message.author.id);
+        setTimeout(() => {
+          crimecooldown.delete(message.author.id);
+        }, 600000);
+     } else {
+       message.channel.send("You can only commit a crime every 10 minutes!")
+     }
+   }
+ },
  gamble: {
    usage: "gamble (amount of xps)",
    description: "Gamble ur xps",
@@ -167,7 +215,7 @@ var commands = {
      let args = parseInt(message.content.substring(8),10)
      if (!args || args==="") return message.channel.send("<:warning:579387552453099561> **Whoops!** Please include how much money to gamble.")
      if(args>datafile.xp[message.author.id]) return message.channel.send("<:warning:579387552453099561> **Whoops!** You can't gamble more than you have! You have " + datafile.xp[message.author.id] + "xp and tried to gamble " + args + "xp!")
-     let odds = Math.floor(Math.random()*3)
+     let odds = Math.floor(Math.random()*2)
      if (odds===1) {
        datafile.xp[message.author.id]=Math.floor(datafile.xp[message.author.id]+args)
        fs.writeFileSync("data.json", JSON.stringify(datafile));
@@ -253,7 +301,7 @@ var commands = {
      } else if (message.content.startsWith("+edit desc")) {
        const filter = (m) => m.author.id === message.author.id;
        message.channel.send("📝 Send your desired description to this channel!")
-       const collector = message.channel.createMessageCollector(filter, { time: 10000 });
+       const collector = message.channel.createMessageCollector(filter);
        collector.on('collect', m => {
          profiles.description[message.author.id]=m.content
          fs.writeFileSync("profiles.json", JSON.stringify(profiles));
@@ -265,7 +313,7 @@ var commands = {
        let attachment = new Discord.Attachment('choosebackground.png', 'profile.png');
        message.channel.send('📝 Send your desired background\'s number to this channel!', attachment);
        const filter = (m) => m.author.id === message.author.id;
-       const collector = message.channel.createMessageCollector(filter, { time: 10000 });
+       const collector = message.channel.createMessageCollector(filter);
        collector.on('collect', m => {
          let backgrounds = ["1","2","3","4"]
          if (!backgrounds.includes(m.content)) {

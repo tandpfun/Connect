@@ -25,6 +25,7 @@ Connect was an awesome bot to work on! I learned a lot about image generation wi
 |+setup|Setup your profile|
 |+get (user mention)|Get someone else's profile|
 |+work|Work a job and earn from 1xp - 300xp|
+|+crime|A chance at winning big! And going poor...|
 |+gamble (xp)|Gamble some experience|
 |+shop|Buy things to enhance your profile!|
 
@@ -54,5 +55,3 @@ This package lets me generate images to make profiles and command responses!
 Thanks for taking the time to review my project!
 
 \~ @Codingpro#0001
-
-
