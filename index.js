@@ -424,23 +424,27 @@ var commands = {
                       Object.keys(leaderboard).sort().forEach(function(key) {
                          ordered[key] = leaderboard[key];
                       });
-                     ctx.drawImage(icon, 30, 45, 150, 150);
-                     ctx.drawImage(xp, 225, 90, 50, 50);
-                     ctx.drawImage(lb, 40, 205, 30, 30);
-                     if (profiles.badges[message.author.id].includes("turt")) {
-                       ctx.drawImage(turt, 250, 147, 55, 40);
-                     }
-                     if (profiles.badges[message.author.id].includes("rich")) {
-                       ctx.drawImage(rich, 320, 147, 40, 40);
-                     }
-                     ctx.font = '40px sans-serif';
-                     ctx.fillStyle = profiles.color[message.author.id];
-                     ctx.fillText(`${message.author.tag}`, 240, 90);
-                     ctx.font = '25px sans-serif';
-                     ctx.fillText(`${datafile.xp[message.author.id]}xp`, 270, 128);
-                     ctx.fillText(`Bio: ${profiles.description[message.author.id]}`, 77, 229);
-                     const attachment = new Discord.Attachment(canvas.toBuffer(), 'profile.png');
-                     message.channel.send(`Here is your profile, ${message.author.tag}!`, attachment);
+                      ctx.drawImage(xp, 225, 90, 50, 50);
+                      ctx.drawImage(lb, 40, 205, 30, 30);
+                      ctx.font = '40px sans-serif';
+                      ctx.fillStyle = profiles.color[message.author.id];
+                      ctx.fillText(`${message.author.tag}`, 240, 90);
+                      ctx.font = '25px sans-serif';
+                      ctx.fillText(`${datafile.xp[message.author.id]}xp`, 270, 128);
+                      ctx.fillText(`Bio: ${profiles.description[message.author.id]}`, 77, 229);
+                      ctx.beginPath();
+                    	ctx.arc(105, 120, 75, 0, Math.PI * 2, true);
+                    	ctx.closePath();
+                    	ctx.clip();
+                      ctx.drawImage(icon, 30, 45, 150, 150);
+                      if (profiles.badges[message.author.id].includes("turt")) {
+                        ctx.drawImage(turt, 250, 147, 55, 40);
+                      }
+                      if (profiles.badges[message.author.id].includes("rich")) {
+                        ctx.drawImage(rich, 320, 147, 40, 40);
+                      }
+                      const attachment = new Discord.Attachment(canvas.toBuffer(), 'profile.png');
+                      message.channel.send(`Here is your profile, ${message.author.tag}!`, attachment);
                    })
                  })
                })
