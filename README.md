@@ -3,7 +3,8 @@
 👋  Welcome to Connect Beta  🔰
 </h1>
 
-![](https://img.shields.io/badge/Version-Beta-blue.svg)![](https://img.shields.io/badge/Dev-Codingpro%230001-brightgreen.svg)
+![](https://img.shields.io/badge/Version-Beta-blue.svg) ![](https://img.shields.io/badge/Dev-Codingpro%230001-brightgreen.svg)
+
 Connect is a [Discord](https://discordapp.com) economy bot for [Discord Hackweek 2019](https://blog.discordapp.com/discord-community-hack-week-build-and-create-alongside-us-6b2a7b7bba33)! Based mostly on image generation, this bot has fun features, and lets you customize a profile using the experience you earn!
 
 This bot uses Canvas, a npm.js package to create custom images for profiles!
