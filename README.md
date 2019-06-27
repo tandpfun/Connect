@@ -1,7 +1,7 @@
 ![](https://cdn.glitch.com/85f76f83-44e1-4054-be57-0c6655e1314e/Connect.png?v=1561657072978)
-<p align="center">
-# Connect Beta
-</p>
+<h1 align="center">
+Connect Beta
+</h1>
 Connect is a [Discord](https://discordapp.com) economy bot for [Discord Hackweek 2019](https://blog.discordapp.com/discord-community-hack-week-build-and-create-alongside-us-6b2a7b7bba33)! Based mostly on image generation, this bot has fun features, and lets you customize a profile using the experience you earn!
 
 This bot uses Canvas, a npm.js package to create custom images for profiles!
