@@ -28,6 +28,16 @@ Connect was an awesome bot to work on! I learned a lot about image generation wi
 |+gamble (xp)|Gamble some experience|
 |+shop|Buy things to enhance your profile!|
 
+## Setup!
+Want to self host this bot as an economy bot for your server? Look no further!
+```
+Step 1: Run `git clone https://github.com/tandpfun/Connect.git`
+Step 2: Navigate to the index.js file, and scroll down to line 31
+Step 3: Replace process.env.TOKEN with your bot's token in "'s
+Step 4: Run `npm i`
+Step 5: Run `node index.js`
+```
+
 ## Packages Used
 ### Discord.js
 This package makes connection between the bot host and the Discord API easier.
