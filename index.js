@@ -152,6 +152,7 @@ var commands = {
           commands["profile"].run(message)
         } else {
           message.channel.send("<:warning:579387552453099561> **Whoops!** You need to say a number from 1-5. Please try again. You have not lost any experience.")
+          collector.stop()
         }
      })
    }
