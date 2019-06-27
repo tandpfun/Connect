@@ -44,6 +44,10 @@ This package makes connection between the bot host and the Discord API easier.
 ### Canvas
 This package lets me generate images to make profiles and command responses!
 
+## To-Do List
+[ ] Put generated images into embeds
+[ ] Create Support Server
+
 ## Thank You
 Thanks for taking the time to review my project!
 
