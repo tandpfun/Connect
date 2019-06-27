@@ -1,4 +1,4 @@
-![](https://cdn.glitch.com/85f76f83-44e1-4054-be57-0c6655e1314e/Connect.png?v=1561657072978)
+![](https://cdn.discordapp.com/attachments/593513849496404016/593883024136077332/Connect.png)
 <h1 align="center">
 👋  Welcome to Connect Beta  🔰
 </h1>
