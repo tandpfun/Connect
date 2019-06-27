@@ -45,8 +45,10 @@ This package makes connection between the bot host and the Discord API easier.
 This package lets me generate images to make profiles and command responses!
 
 ## To-Do List
-[ ] Put generated images into embeds
-[ ] Create Support Server
+- [ ] Put generated images into embeds
+- [ ] Create Support Server
+- [ ] Make Crime Command
+- [ ] Make Rob Command
 
 ## Thank You
 Thanks for taking the time to review my project!
