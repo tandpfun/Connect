@@ -215,6 +215,7 @@ var commands = {
      let args = parseInt(message.content.substring(8),10)
      if (!args || args==="") return message.channel.send("<:warning:579387552453099561> **Whoops!** Please include how much money to gamble.")
      if(args>datafile.xp[message.author.id]) return message.channel.send("<:warning:579387552453099561> **Whoops!** You can't gamble more than you have! You have " + datafile.xp[message.author.id] + "xp and tried to gamble " + args + "xp!")
+     if(args<0) return message.channel.send("<:warning:579387552453099561> **Whoops!** You can't gamble less than 0!")
      let odds = Math.floor(Math.random()*2)
      if (odds===1) {
        datafile.xp[message.author.id]=Math.floor(datafile.xp[message.author.id]+args)
@@ -426,6 +427,12 @@ var commands = {
                       });
                       ctx.drawImage(xp, 225, 90, 50, 50);
                       ctx.drawImage(lb, 40, 205, 30, 30);
+                      if (profiles.badges[message.author.id].includes("turt")) {
+                        ctx.drawImage(turt, 250, 147, 55, 40);
+                      }
+                      if (profiles.badges[message.author.id].includes("rich")) {
+                        ctx.drawImage(rich, 320, 147, 40, 40);
+                      }
                       ctx.font = '40px sans-serif';
                       ctx.fillStyle = profiles.color[message.author.id];
                       ctx.fillText(`${message.author.tag}`, 240, 90);
@@ -437,12 +444,6 @@ var commands = {
                     	ctx.closePath();
                     	ctx.clip();
                       ctx.drawImage(icon, 30, 45, 150, 150);
-                      if (profiles.badges[message.author.id].includes("turt")) {
-                        ctx.drawImage(turt, 250, 147, 55, 40);
-                      }
-                      if (profiles.badges[message.author.id].includes("rich")) {
-                        ctx.drawImage(rich, 320, 147, 40, 40);
-                      }
                       const attachment = new Discord.Attachment(canvas.toBuffer(), 'profile.png');
                       message.channel.send(`Here is your profile, ${message.author.tag}!`, attachment);
                    })
