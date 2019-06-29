@@ -67,7 +67,7 @@ var commands = {
      let embed = new Discord.RichEmbed()
      embed.setAuthor("ConnectBot Commands", client.user.avatarURL)
      embed.addField("📇 **Profile Commands**","`+setup` - Setup your profile\n`+profile` - View your profile\n`+get (user)` - Get another user's profile\n`+edit` - Edit your profile")
-     embed.addField("💵 **Get Experience**", "`+work` - Gain from 1xp to 300xp every 10 minutes\n`+gamble (xp)` - 1/2 chance of doubling xp\n`+crime` - 1/5 chance of getting up to 1200xp. Or loosing it.\n`Every Message` - Gain 10xp for every message every 30 seconds")
+     embed.addField("💵 **Get Experience**", "`+work` - Gain from 1xp to 300xp every 10 minutes\n`+gamble (xp)` - 1/2 chance of doubling xp\n`+crime` - 1/5 chance of getting up to 1200xp. Or loosing it.\n`+fish` - Go fishing, and try to sell the fish for more than you pay for casting!\n`Every Message` - Gain 10xp for every message every 30 seconds")
      embed.addField("🛒 **Buy Stuff**","`+shop` - Buy something from the shop.")
      embed.setColor("GREEN")
      embed.setFooter("Connect Soical Bot")
@@ -157,6 +157,26 @@ var commands = {
      })
    }
  },
+ fish: {
+   usage: "fish",
+   description: "Fish for some xp!",
+   category: "gain",
+   aliases:[],
+   run: (message) => {
+     if (!profiles.profiles.includes(message.author.id)) return message.channel.send("<:warning:579387552453099561> **Whoops!** Please create your profile first: `+setup`")
+     let catches = ["🦀","🐟","🐠","🐡"]
+     let sell = Math.floor(Math.random()*30)
+     datafile.xp[message.author.id]=datafile.xp[message.author.id]-10
+     message.channel.send("<a:loading:588180824227184652> You cast your line!")
+     setTimeout(()=>{
+       let fish = catches[Math.floor(Math.random()*catches.length)];
+       message.channel.send("🎣 You caught a " + fish + "! You payed 15xp for casting.")
+       datafile.xp[message.author.id]=datafile.xp[message.author.id]+sell
+       message.channel.send("💰 You sold " + fish + " for " + sell + "xp!")
+       fs.writeFileSync("data.json", JSON.stringify(datafile));
+     }, 3000)
+   }
+ },
  crime: {
    usage: "crime",
    description: "Commit a crime",
@@ -168,7 +188,7 @@ var commands = {
      if (!crimecooldown.has(message.author.id)) {
        let crime = crimes[Math.floor(Math.random()*crimes.length)];
        let money = Math.floor(Math.random()*1200)
-       let odds = Math.floor(Math.random()*5)
+       let odds = Math.floor(Math.random()*3)
        if (odds === 1) {
          datafile.xp[message.author.id]=datafile.xp[message.author.id]+money
          fs.writeFileSync("data.json", JSON.stringify(datafile));
