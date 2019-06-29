@@ -9,13 +9,18 @@ Connect is a [Discord](https://discordapp.com) economy bot for [Discord Hackweek
 
 This bot uses Canvas, a npm.js package to create custom images for profiles!
 
+<center>
+<img src="https://cdn.glitch.com/85f76f83-44e1-4054-be57-0c6655e1314e%2F68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3537343636333034383339373332343239382f3539343333333430393735333536333134372f70726f66696c652e706e67.png?v=1561841974019" width="350" height="125" />
+<img src="https://cdn.glitch.com/85f76f83-44e1-4054-be57-0c6655e1314e%2Fprofile.png?v=1561841975094" width="350" height="125" />
+</center>
+
 ## Invite & Test
 **[Invite The Bot](https://discordapp.com/api/oauth2/authorize?client_id=591893713005838336&permissions=379969&scope=bot)**
 
 **[Join Test Server](https://discord.gg/kQTzzFV)**
 
 ## What I Learned
-Connect was an awesome bot to work on! I learned a lot about image generation with the [Canvas](https://www.npmjs.com/package/canvas) package, and how to make cool looking image-based profiles. I will use this knowlege to enhance my future projects!
+Connect was an awesome bot to work on! I learned a lot about image generation with the [Canvas](https://www.npmjs.com/package/canvas) package, and how to make cool looking image-based profiles. I will use this knowlege to enhance my future projects! I'd like to thank hack week for giving me a reason to start coding this small idea in my head, and it seems to be growing preatty well so far!
 
 ## Commands
 |Command|Description|
