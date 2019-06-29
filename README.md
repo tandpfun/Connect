@@ -9,7 +9,7 @@ Connect is a [Discord](https://discordapp.com) economy bot for [Discord Hackweek
 
 This bot uses Canvas, a npm.js package to create custom images for profiles!
 
-![](https://cdn.discordapp.com/attachments/574663048397324298/594333406209245196/profile.png | width=350)
+![](https://cdn.discordapp.com/attachments/574663048397324298/594333406209245196/profile.png)
 ![](https://cdn.discordapp.com/attachments/574663048397324298/594333409753563147/profile.png)
 
 ## Invite & Test
