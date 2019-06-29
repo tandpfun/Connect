@@ -20,7 +20,7 @@ This bot uses Canvas, a npm.js package to create custom images for profiles!
 **[Join Test Server](https://discord.gg/kQTzzFV)**
 
 ## What I Learned
-Connect was an awesome bot to work on! I learned a lot about image generation with the [Canvas](https://www.npmjs.com/package/canvas) package, and how to make cool looking image-based profiles. I will use this knowlege to enhance my future projects!
+Connect was an awesome bot to work on! I learned a lot about image generation with the [Canvas](https://www.npmjs.com/package/canvas) package, and how to make cool looking image-based profiles. I will use this knowlege to enhance my future projects! I'd like to thank hack week for giving me a reason to start coding this small idea in my head, and it seems to be growing preatty well so far!
 
 ## Commands
 |Command|Description|
