@@ -31,6 +31,7 @@ Connect was an awesome bot to work on! I learned a lot about image generation wi
 |+get (user mention)|Get someone else's profile|
 |+work|Work a job and earn from 1xp - 300xp|
 |+crime|A chance at winning big! And going poor...|
+|+fish|Go for a fish to try to earn experience!|
 |+gamble (xp)|Gamble some experience|
 |+shop|Buy things to enhance your profile!|
 
