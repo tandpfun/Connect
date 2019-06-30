@@ -56,6 +56,7 @@ var functions = {
 /* Command Cooldowns */
 let workcooldown = new Set();
 let crimecooldown = new Set();
+let fishcooldown = new Set();
 
 /* All The Bot's Commands */
 var commands = {
@@ -165,17 +166,25 @@ var commands = {
    aliases:[],
    run: (message) => {
      if (!profiles.profiles.includes(message.author.id)) return message.channel.send("<:warning:579387552453099561> **Whoops!** Please create your profile first: `+setup`")
-     let catches = ["🦀","🐟","🐠","🐡"]
-     let sell = Math.floor(Math.random()*30)
-     let change = sell-15
-     message.channel.send("<a:loading:588180824227184652> You cast your line!")
-     setTimeout(()=>{
-       let fish = catches[Math.floor(Math.random()*catches.length)];
-       message.channel.send("🎣 You caught a " + fish + "! You payed 15xp for casting.")
-       datafile.xp[message.author.id]=datafile.xp[message.author.id]+change
-       message.channel.send("💰 You sold " + fish + " for " + sell + "xp!")
-       fs.writeFileSync("data.json", JSON.stringify(datafile));
-     }, 3000)
+     if (!fishcooldown.has(message.author.id)) {
+       let catches = ["🦀","🐟","🐠","🐡"]
+       let sell = Math.floor(Math.random()*30)
+       let change = sell-15
+       message.channel.send("<a:loading:588180824227184652> You cast your line!")
+       setTimeout(()=>{
+         let fish = catches[Math.floor(Math.random()*catches.length)];
+         message.channel.send("🎣 You caught a " + fish + "! You payed 15xp for casting.")
+         datafile.xp[message.author.id]=datafile.xp[message.author.id]+change
+         message.channel.send("💰 You sold " + fish + " for " + sell + "xp!")
+         fs.writeFileSync("data.json", JSON.stringify(datafile));
+       }, 3000)
+       fishcooldown.add(message.author.id);
+        setTimeout(() => {
+          fishcooldown.delete(message.author.id);
+        }, 10000);
+     } else {
+       message.channel.send("Please wait 10 seconds before fishing again!")
+     }
    }
  },
  crime: {
