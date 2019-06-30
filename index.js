@@ -45,6 +45,7 @@ client.on('ready', function (evt, callback) {
  });
 });
 
+
 /* Functions */
 var functions = {
   sti: (string) => {
@@ -166,12 +167,12 @@ var commands = {
      if (!profiles.profiles.includes(message.author.id)) return message.channel.send("<:warning:579387552453099561> **Whoops!** Please create your profile first: `+setup`")
      let catches = ["🦀","🐟","🐠","🐡"]
      let sell = Math.floor(Math.random()*30)
-     datafile.xp[message.author.id]=datafile.xp[message.author.id]-10
+     let change = sell-15
      message.channel.send("<a:loading:588180824227184652> You cast your line!")
      setTimeout(()=>{
        let fish = catches[Math.floor(Math.random()*catches.length)];
        message.channel.send("🎣 You caught a " + fish + "! You payed 15xp for casting.")
-       datafile.xp[message.author.id]=datafile.xp[message.author.id]+sell
+       datafile.xp[message.author.id]=datafile.xp[message.author.id]+change
        message.channel.send("💰 You sold " + fish + " for " + sell + "xp!")
        fs.writeFileSync("data.json", JSON.stringify(datafile));
      }, 3000)
